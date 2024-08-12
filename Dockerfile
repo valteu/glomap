@@ -1,9 +1,10 @@
-# Use CUDA 11.8 base image with cuDNN
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
+# Use an Ubuntu base image
+FROM ubuntu:22.04
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
     git \
+    apt-utils \
     ninja-build \
     build-essential \
     wget \
@@ -15,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     libatlas-base-dev \
     cmake \
     libmetis-dev \
+    libabsl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install CMake 3.28 or newer
@@ -28,7 +30,7 @@ RUN git clone https://github.com/abseil/abseil-cpp.git /tmp/abseil-cpp \
     && cd /tmp/abseil-cpp \
     && mkdir build \
     && cd build \
-    && cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE -DBUILD_TESTING=OFF \
+    && cmake .. -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE -DBUILD_TESTING=OFF -DCMAKE_INSTALL_PREFIX=/usr/local \
     && make -j$(nproc) \
     && make install \
     && rm -rf /tmp/abseil-cpp
@@ -39,7 +41,7 @@ RUN git clone https://ceres-solver.googlesource.com/ceres-solver /tmp/ceres-solv
     && git submodule update --init --recursive \
     && mkdir build \
     && cd build \
-    && cmake .. -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF \
+    && cmake .. -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF -DCMAKE_PREFIX_PATH=/usr/local -DUSE_ABSEIL=ON \
     && make -j$(nproc) \
     && make install \
     && rm -rf /tmp/ceres-solver
