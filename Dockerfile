@@ -1,5 +1,5 @@
-# Use an Ubuntu base image
-FROM ubuntu:22.04
+# Use CUDA 11.8 base image with cuDNN
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libgflags-dev \
     libatlas-base-dev \
     cmake \
+    libmetis-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install CMake 3.28 or newer
@@ -48,10 +49,6 @@ RUN git clone --recursive https://github.com/valteu/glomap.git /opt/glomap
 
 # Set up the build environment
 WORKDIR /opt/glomap
-RUN mkdir build && cd build && cmake .. -GNinja
-
-# Build glomap
-RUN cd build && ninja && ninja install
 
 # Set the entrypoint to bash to allow for an interactive session
 ENTRYPOINT ["/bin/bash"]

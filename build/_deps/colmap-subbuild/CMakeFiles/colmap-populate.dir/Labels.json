@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/CMakeFiles/colmap-populate"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/CMakeFiles/colmap-populate.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/CMakeFiles/colmap-populate-complete.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-build.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-configure.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-download.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-install.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-mkdir.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-patch.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-test.rule"
+		},
+		{
+			"file" : "/home/valteu/study/mml/glomap/build/_deps/colmap-subbuild/colmap-populate-prefix/src/colmap-populate-stamp/colmap-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"colmap-populate"
+		],
+		"name" : "colmap-populate"
+	}
+}
