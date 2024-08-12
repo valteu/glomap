@@ -29,13 +29,15 @@ RUN apt-get update && apt-get install -y \
     libcgal-dev \
     libceres-dev \
     software-properties-common \
+    sudo \
     && apt-get clean
 
-# Install CMake 3.20 or higher
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.5/cmake-3.27.5-linux-x86_64.sh && \
-    chmod +x cmake-3.27.5-linux-x86_64.sh && \
-    ./cmake-3.27.5-linux-x86_64.sh --skip-license --prefix=/usr/local && \
-    rm cmake-3.27.5-linux-x86_64.sh
+# Install CMake 3.30.1
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.30.1/cmake-3.30.1.tar.gz && \
+    tar xfvz cmake-3.30.1.tar.gz && cd cmake-3.30.1 && \
+    ./bootstrap && make -j$(nproc) && \
+    make install && \
+    cd .. && rm -rf cmake-3.30.1 cmake-3.30.1.tar.gz
 
 # Update library cache
 RUN ldconfig
@@ -44,6 +46,8 @@ RUN ldconfig
 RUN git clone --recursive https://github.com/valteu/glomap.git /opt/glomap
 
 WORKDIR /opt/glomap
+
+RUN cmake .. -GNinja && ninja && ninja install
 
 # Set the entrypoint to bash to allow for an interactive session
 ENTRYPOINT ["/bin/bash"]
