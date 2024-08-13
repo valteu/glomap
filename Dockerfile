@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y \
     software-properties-common \
     sudo \
     xvfb \
+    colmap \
     && apt-get clean
 
 # Install CMake 3.30.1
