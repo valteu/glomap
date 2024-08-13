@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
     libceres-dev \
     software-properties-common \
     sudo \
+    xvfb \
     && apt-get clean
 
 # Install CMake 3.30.1
@@ -48,6 +49,12 @@ RUN git clone --recursive https://github.com/valteu/glomap.git /opt/glomap
 WORKDIR /opt/glomap
 
 RUN cmake .. -GNinja && ninja && ninja install
+
+# Set up the environment variable to use xvfb
+ENV DISPLAY=:99
+
+# Start xvfb in the background
+CMD ["sh", "-c", "Xvfb :99 -screen 0 1024x768x24 & bash"]
 
 # Set the entrypoint to bash to allow for an interactive session
 ENTRYPOINT ["/bin/bash"]
